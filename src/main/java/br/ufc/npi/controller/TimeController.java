@@ -34,7 +34,7 @@ public class TimeController {
 	@RequestMapping(path="/{id}")
 	public ModelAndView detalhesTime(@PathVariable("id") Integer id, @RequestParam(required=false) String erro){
 
-	  ModelAndView model = new ModelAndView("detalhes-time");
+	  ModelAndView model = new ModelAndView("detalhe-time");
 	  Time time = timeService.getTime(id);
 	  List<Jogador> jogadoresSemTime = jogadorService.getJogadoresSemTime();
 
