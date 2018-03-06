@@ -23,13 +23,13 @@
 				</div> 
 			</div>
 			<div class="row"> 
-				<form>
+				<form action="/jogadores/salvar" method="POST">
 					<div class= "input-field col s4">
-						<input placeholder="Nome do jogadores" id="jogadores" type="text" class ="validate" />
+						<input placeholder="Nome do jogadores" id="jogadores" name="nomeJogador" type="text" class ="validate" />
 						<label for="first_name">Nome do jogadores</label>
 					</div>
 					<div class= "input-field col s4">
-						<input placeholder="Idade" id="jogadores" type="text" class ="validate" />
+						<input placeholder="Idade" id="jogadores" type="text" name="idadeJogador" class ="validate" />
 						<label for="first_name">Idade</label>
 					</div>
 					<div class="col s4">
@@ -43,16 +43,17 @@
 					<thead>
 						<tr>
 							<th>Nome</th>
-							<th>Número de jogadores</th>
-							<th>Detalhes</th>
+							<th>Time a qual pertence</th>
 							<th>Excluir jogadores</th>
 						</tr>
 					</thead>
 					<tbody>
-						<td>jogadores 01</td>
-						<td>4</td>
-						<td><a class="waves-effect waves-teal btn-flat" href="#">Ver detalhes</a></td>
-						<td><a class="waves-effect waves-teal btn-flat" href="#">X</a></td>
+						<tr th:each="jogador: ${jogadores}">
+							<td th:text="${jogador.nome}"></td>
+							<td th:if="${jogador.time}" th:text="${jogador.time.nome}"></td>
+							<td th:unless="${jogador.time}">sem time</td>
+							<td><a class="waves-effect waves-teal btn-flat" th:href="@{${'/jogadores/excluir/'+jogador.id}}">X</a></td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
