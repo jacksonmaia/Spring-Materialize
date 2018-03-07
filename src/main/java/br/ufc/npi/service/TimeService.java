@@ -17,12 +17,14 @@ public class TimeService {
 	@Autowired
 	JogadorRepositorio repJogador;
 	
-	
 	public Time salvarTime(String nome){
 		Time time = new Time();
 		time.setNome(nome);
 		repTime.save(time);
 		return time;
+	}
+	public void excluirTime(Integer idTime){
+		repTime.delete(repTime.findOne(idTime));
 	}
 	public List<Time> getTodosTimes(){
 		return repTime.findAll();
@@ -54,6 +56,13 @@ public class TimeService {
 		
 		repTime.save(time);
 		repJogador.save(jogador);
+	}
+	public void delTodosOsJogadoresDoTime(Integer idTime){
+		Time time = repTime.findOne(idTime);
+		for( Jogador i : time.getJogadores() ){
+			Integer idJogador = i.getId();
+			this.delJogadorTime(idTime, idJogador);
+		}
 	}
 
 }

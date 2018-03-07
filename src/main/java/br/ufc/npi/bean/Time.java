@@ -41,4 +41,5 @@ public class Time {
 	public void setJogadores(List<Jogador> jogadores){
 		this.jogadores = jogadores;
 	}
+
 }

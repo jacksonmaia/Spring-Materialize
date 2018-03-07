@@ -50,6 +50,13 @@ public class TimeController {
 		timeService.salvarTime(nomeTime);
 		return "redirect:/times/";
 	}
+	@RequestMapping(path="/excluir/{idTime}")
+	public String excluirTime(@PathVariable("idTime") Integer idTime){
+		timeService.delTodosOsJogadoresDoTime(idTime);
+		timeService.excluirTime(idTime);
+		
+		return "redirect:/times/" + idTime;
+	}
 	
 	@RequestMapping(path="/{idTime}/adicionarjogador", method=RequestMethod.POST)
 	public ModelAndView adicionarJogadorAoTime(@PathVariable("idTime") Integer idTime, 
@@ -72,4 +79,5 @@ public class TimeController {
 	}
 	
 	
+
 }
